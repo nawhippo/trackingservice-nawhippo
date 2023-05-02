@@ -8,6 +8,10 @@ import java.util.List;
 
 @Repository
 public interface TrackingRepository extends JpaRepository<Tracking, Integer> {
-    List<Tracking> findByOrderIdAndItemId(int orderId, int itemId);
+
+    // Find a tracking entry by order ID and item ID
+    Tracking findByOrderIdAndItemId(int orderId, int itemId);
+    List<Tracking> findAllByOrderId(int orderId);
+
 
 }

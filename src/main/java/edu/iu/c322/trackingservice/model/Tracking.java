@@ -4,29 +4,47 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 public class Tracking {
+    public Boolean getPresent() {
+        return isPresent;
+    }
+
+    public void setPresent(Boolean present) {
+        isPresent = present;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
+    private int id;
     private int orderId;
-
     private int itemId;
-
     private String status;
+    private LocalDate date;
 
-    private Date date;
+    private Boolean isPresent;
 
-    public long getId() {
+
+    public Tracking() {
+    }
+
+    public Tracking(int orderId, int itemId, String status, LocalDate date) {
+        this.orderId = orderId;
+        this.itemId = itemId;
+        this.status = status;
+        this.date = date;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -54,11 +72,15 @@ public class Tracking {
         this.status = status;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public boolean isPresent() {
+        return isPresent;
     }
 }
